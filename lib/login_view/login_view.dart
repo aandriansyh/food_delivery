@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SignInView extends StatelessWidget {
-  const SignInView({Key? key}) : super(key: key);
+class LoginView extends StatelessWidget {
+  const LoginView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -16,7 +15,7 @@ class SignInView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -51,24 +50,29 @@ class SignInView extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 20),
-            BottomAppBar(
-              color: Colors.white,
+            SizedBox(height: 70),
+            SizedBox(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Divider dan Gambar
                   Expanded(
-                    flex: 1,
+                    flex: 2,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Divider(thickness: 2),
+                        SizedBox(height: 2,),
                         Image.asset('assets/signinburger.png'),
                       ],
                     ),
                   ),
+                  // Teks dan ikons
                   Expanded(
                     flex: 1,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           'Or Connect With',
@@ -79,7 +83,7 @@ class SignInView extends StatelessWidget {
                           height: 20,
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Image.asset('assets/facebook_icon.png'),
                             SizedBox(
