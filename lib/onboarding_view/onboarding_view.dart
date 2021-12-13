@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/sign_up_view/sign_in_view.dart';
+import 'package:food_delivery/login_view/login_view.dart';
 
 class OnboardingView extends StatelessWidget {
   const OnboardingView({Key? key}) : super(key: key);
@@ -179,7 +179,7 @@ class OnboardingView extends StatelessWidget {
                       padding:
                           EdgeInsets.symmetric(horizontal: 40, vertical: 20)),
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => SignInView()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => LoginView()));
                   },
                   child: Text(
                     'Next',
