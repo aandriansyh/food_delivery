@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery/login_view/sign_in_view.dart';
+import 'package:food_delivery/login_view/sign_up_view.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -25,7 +27,9 @@ class LoginView extends StatelessWidget {
                     ),
                   ),
                   ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => SignInView()));
+                      },
                       style: ElevatedButton.styleFrom(
                         textStyle: TextStyle(fontFamily: 'Poppins'),
                         primary: Color(0xffD35400),
@@ -35,7 +39,9 @@ class LoginView extends StatelessWidget {
                       ),
                       child: Text('Sign In')),
                   ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpView()));
+                      },
                       style: ElevatedButton.styleFrom(
                         textStyle: TextStyle(fontFamily: 'Poppins'),
                         primary: Color(0xffECF0F1),

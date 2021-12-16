@@ -1,4 +1,4 @@
-#Sat Dec 11 23:00:00 ICT 2021
-base.0=C\:\\Users\\Eka Adhitya K\\StudioProjects\\food_delivery\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+#Thu Dec 16 14:04:31 ICT 2021
+base.0=C\:\\Users\\ASUS\\AndroidStudioProjects\\food_delivery\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
