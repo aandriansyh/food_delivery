@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -9,17 +8,30 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  int _selectedIndex = 0;
+  final screen = [
+    _HomeViewState(),
+  ];
+  PageController pageController = PageController();
+
+  void onTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Column(
+            children: [
+              SizedBox(height: 60),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: 'Search',
@@ -35,10 +47,9 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ),
               ),
-            ),
-            Column(
-              children: [
-                Row(
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Row(
                   children: [
                     Icon(Icons.pin),
                     Text(
@@ -47,83 +58,499 @@ class _HomeViewState extends State<HomeView> {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  height: 70,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  height: 70,
-                                  width: 70,
-                                  decoration: BoxDecoration(
+              ),
+              SizedBox(
+                height: 20,
+              ),
+            ],
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 110,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          Column(
+                            children: [
+                              Container(
+                                height: 70,
+                                width: 70,
+                                decoration: BoxDecoration(
                                     color: Color(0xffECF0F1),
                                     borderRadius: BorderRadius.circular(20),
-                                    border: Border.all(color: Color(0xffECF0F1))
-                                  ),
+                                    border: Border.all(color: Color(0xffECF0F1))),
                                 child: Image.asset('assets/coffeecup.png'),
-                              ),Text('Drink'),
-                            ],),
-                            SizedBox(
-                              width: 40,
-                            ),
-                            Column(
-                              children: [
-                                Container(
-                                  height: 33,
-                                  width: 40,
-                                  color: Color(0xffECF0F1),
-                                  child: Image.asset(
-                                    'assets/burgerhome.png',
-                                    color: Colors.black,
-                                  ),
+                              ),
+                              Text('Drink')
+                            ],
+                          ),
+                          SizedBox(
+                            width: 40,
+                          ), // Drink
+                          Column(
+                            children: [
+                              Container(
+                                height: 70,
+                                width: 70,
+                                decoration: BoxDecoration(
+                                    color: Color(0xffECF0F1),
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(color: Color(0xffECF0F1))),
+                                child: Image.asset(
+                                  'assets/burgerhome.png',
+                                  color: Colors.black,
                                 ),
-                                Text('Food'),
-                                Column(
-                                  children: [
-                                    Container(
-                                      height: 33,
-                                      width: 40,
-                                      color: Color(0xffECF0F1),
-                                      child: Image.asset(
-                                        'assets/burgerhome.png',
-                                        color: Colors.black,
-                                      ),
+                              ),
+                              Text('Food')
+                            ],
+                          ),
+                          SizedBox(
+                            width: 40,
+                          ), // Food
+                          Column(
+                            children: [
+                              Container(
+                                height: 70,
+                                width: 70,
+                                decoration: BoxDecoration(
+                                    color: Color(0xffECF0F1),
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(color: Color(0xffECF0F1))),
+                                child: Image.asset('assets/cakehome.png'),
+                              ),
+                              Text('Cake')
+                            ],
+                          ),
+                          SizedBox(
+                            width: 40,
+                          ), // Cake
+                          Column(
+                            children: [
+                              Container(
+                                height: 70,
+                                width: 70,
+                                decoration: BoxDecoration(
+                                    color: Color(0xffECF0F1),
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(color: Color(0xffECF0F1))),
+                                child: Image.asset('assets/snackhome.png'),
+                              ),
+                              Text('Snack'),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            'Food Menu',
+                            textAlign: TextAlign.start,
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: TextButton(
+                            style: TextButton.styleFrom(
+                                alignment: Alignment.centerRight),
+                            onPressed: () {},
+                            child: Text(
+                              'View All',
+                              textAlign: TextAlign.end,
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  SizedBox(
+                    height: 300,
+                    width: MediaQuery.of(context).size.width,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 20),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                          height: 130,
+                                          width: 130,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xff3498DB)
+                                                .withOpacity(0.3),
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            border: Border.all(
+                                                color: Color(0xff3498DB)
+                                                    .withOpacity(0.3)),
+                                            image: DecorationImage(
+                                              image: AssetImage(
+                                                'assets/burgerfoodlist.png',
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 8.0, left: 8),
+                                          child: Text(
+                                            'Burgers',
+                                            style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 14,
+                                                color: Colors.white),
+                                            textAlign: TextAlign.left,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    Text('Food'),
-                                  ],
-                                ),
-                              ],
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                          height: 130,
+                                          width: 130,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xff9B59B6)
+                                                .withOpacity(0.3),
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            border: Border.all(
+                                                color: Color(0xff9B59B6)
+                                                    .withOpacity(0.3)),
+                                            image: DecorationImage(
+                                              image: AssetImage(
+                                                  'assets/fruits_home.png'),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 8.0, left: 8),
+                                          child: Text(
+                                            'Fruit',
+                                            style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 14,
+                                                color: Colors.white),
+                                            textAlign: TextAlign.left,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                            // SizedBox(
-                            //   height: 100,
-                            //   child: GridView(
-                            //     scrollDirection: Axis.horizontal,
-                            //     gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                            //         maxCrossAxisExtent: 200, crossAxisSpacing: 40),
-                            //     children: [
-                            //       Container(
-                            //       ),
                           ],
                         ),
-                      ),
-                    ],
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 20),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                          height: 130,
+                                          width: 130,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xff9B59B6)
+                                                .withOpacity(0.3),
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            border: Border.all(
+                                                color: Color(0xff9B59B6)
+                                                    .withOpacity(0.3)),
+                                            image: DecorationImage(
+                                              image: AssetImage(
+                                                'assets/pizza_home.png',
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 8.0, left: 8),
+                                          child: Text(
+                                            'Pizza',
+                                            style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 14,
+                                                color: Colors.white),
+                                            textAlign: TextAlign.left,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                          height: 130,
+                                          width: 130,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xff3498DB)
+                                                .withOpacity(0.3),
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            border: Border.all(
+                                                color: Color(0xff3498DB)
+                                                    .withOpacity(0.3)),
+                                            image: DecorationImage(
+                                              image: AssetImage(
+                                                  'assets/sushi_home.png'),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 8.0, left: 8),
+                                          child: Text(
+                                            'Sushi',
+                                            style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 14,
+                                                color: Colors.white),
+                                            textAlign: TextAlign.left,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 20),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                          height: 130,
+                                          width: 130,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xff3498DB)
+                                                .withOpacity(0.3),
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            border: Border.all(
+                                                color: Color(0xff3498DB)
+                                                    .withOpacity(0.3)),
+                                            image: DecorationImage(
+                                              alignment: Alignment.centerRight,
+                                              image: AssetImage(
+                                                  'assets/bbq_home.png'),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 8.0, left: 8),
+                                          child: Text(
+                                            'BBQ',
+                                            style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 14,
+                                                color: Colors.white),
+                                            textAlign: TextAlign.left,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                          height: 130,
+                                          width: 130,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xff9B59B6)
+                                                .withOpacity(0.3),
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            border: Border.all(
+                                                color: Color(0xff9B59B6)
+                                                    .withOpacity(0.3)),
+                                            image: DecorationImage(
+                                              alignment: Alignment.centerRight,
+                                              image: AssetImage(
+                                                  'assets/noodles_home.png'),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 8.0, left: 8),
+                                          child: Text(
+                                            'Noodles',
+                                            style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 14,
+                                                color: Colors.white),
+                                            textAlign: TextAlign.left,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            'Near Me',
+                            textAlign: TextAlign.start,
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: TextButton(
+                            style: TextButton.styleFrom(
+                                alignment: Alignment.centerRight),
+                            onPressed: () {},
+                            child: Text(
+                              'View All',
+                              textAlign: TextAlign.end,
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 30.0),
+                                child: Container(
+                                  width: 130,
+                                  height: 130,
+                                  decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/dapoerijah_home.png'))),
+                                ),
+                              ),
+                              Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20),
+                                    child: Text('Dapur Ijah Restaurant',
+                                        style: TextStyle(fontFamily: 'Poppins', fontSize: 14),
+                                    textAlign: TextAlign.start,),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20),
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.pin_drop),
+                                        Text('13 th Street, 46 W 12th St, NY', style: TextStyle(fontFamily: 'Roboto', fontSize: 12),
+                                        textAlign: TextAlign.start,),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(padding: const EdgeInsets.only(left: 20),
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.lock_clock),
+                                      Text('3 min - 1.1 km', style: TextStyle(fontFamily: 'Roboto', fontSize: 12),
+                                      textAlign: TextAlign.start,),
+                                    ],
+                                  ),),
+                                  Padding(padding: const EdgeInsets.only(left: 20),
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.star, color: Color(0xffFFC107),),
+                                      Icon(Icons.star, color: Color(0xffFFC107),),
+                                      Icon(Icons.star, color: Color(0xffFFC107),),
+                                      Icon(Icons.star, color: Color(0xffFFC107),),
+                                      Icon(Icons.star, color: Color(0xffFFC107),),
+                                    ],
+                                  ),),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+          ),
               ],
             ),
-          ],
-        ),
+          // Bottom Navigation Bar
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: 'Order'),
+          BottomNavigationBarItem(icon: Icon(Icons.bookmark), label: 'My List'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: (index) => setState(() => _selectedIndex = index),
+        selectedItemColor: Color(0xffD35400),
+        unselectedItemColor: Color(0xff000000).withOpacity(0.5),
+        iconSize: 20,
+        selectedFontSize: 12,
+        unselectedFontSize: 12,
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }
